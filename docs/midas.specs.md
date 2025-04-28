@@ -220,12 +220,12 @@ Inter-agent communication is managed via defined interfaces (hypothetical tools/
     *   **Task 3.3:** Refine inter-agent communication protocols based on initial testing.
     *   **Task 3.4:** Write initial user documentation (setup, config, basic planning workflow).
 *   **Phase 4: Advanced Features & Refinement**
-    *   **Task 4.1:** Implement advanced Token Management strategies within agent instructions or potentially via custom RooCode rules/hooks if needed.
-    *   **Task 4.2:** Implement advanced Robustness strategies (Loop detection hints, advanced Hallucination checks, HITL triggers) within agent instructions/rules.
+    *   **Task 4.1:** Implement advanced Token Management strategies within agent instructions or potentially via custom RooCode rules/hooks if needed. - *Completed*
+    *   **Task 4.2:** Implement advanced Robustness strategies (Loop detection hints, advanced Hallucination checks, HITL triggers) within agent instructions/rules. - *Completed*
     *   **Task 4.3:** Refine Planner/Product Owner decomposition logic based on usage.
-    *   **Task 4.4:** Develop and integrate `MIDAS Security Specialist` agent definition (`.roo/agents/security_specialist.agent.md`), including security review steps in workflows.
-    *   **Task 4.5:** Develop and integrate `MIDAS DevOps Engineer` agent definition (`.roo/agents/devops_engineer.agent.md`), including CI/CD setup and deployment steps in workflows.
-    *   **Task 4.6:** Develop and integrate `MIDAS UI/UX Designer` agent definition (`.roo/agents/ui_ux_designer.agent.md`).
+    *   **Task 4.4:** Develop and integrate `MIDAS Security Specialist` agent definition (`.roo/agents/security_specialist.agent.md`), including security review steps in workflows. - *Completed*
+    *   **Task 4.5:** Develop and integrate `MIDAS DevOps Engineer` agent definition (`.roo/agents/devops_engineer.agent.md`), including CI/CD setup and deployment steps in workflows. - *Completed*
+    *   **Task 4.6:** Develop and integrate `MIDAS UI/UX Designer` agent definition (`.roo/agents/ui_ux_designer.agent.md`). - *Completed*
     *   **Task 4.7:** Add configuration capabilities (e.g., separate config files or frontmatter in agent definitions) for prompts, models, GitHub repository details.
 
 ## 10. Agent Communication & MCP Interaction Diagram
