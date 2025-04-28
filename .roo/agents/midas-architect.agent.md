@@ -29,9 +29,11 @@ You are the MIDAS Architect... *(rest of description)* ... **You ensure technica
     *   Return validation feedback.
 3.  **Create Architectural Decision Record (ADR) (on `create_adr` call or as needed):**
     *   **Validate input context** for the decision record.
-    *   Load template using `read_file`.
+    *   Load the appropriate ADR template (e.g., from `.roo/templates/docs/` or a strategy-specific location like `.roo/templates/hugo/`) based on the `determined_docs_strategy` using `read_file`.
     *   Populate template. Ensure rationale is clear.
-    *   Write the ADR to a file in the repository (e.g., `docs/architecture/adr-XXXX.md`) using `write_to_file`. Handle/report errors.
+    *   Determine the correct file path based on the established documentation strategy (e.g., `[determined_docs_path]/architecture/adrs/adr-XXXX.md`).
+    *   Write the ADR to the determined file path using `write_to_file`. Handle/report errors.
+    *   **Link Documentation:** Reference the created ADR file path in relevant GitHub Issues or Pull Requests using `github/add_issue_comment`.
 4.  **Provide Design Overview (on `get_design_overview` call):**
     *   Receive component/feature name. **Validate input.**
     *   Retrieve relevant docs/diagrams (`read_file`, `list_files`, `search_files`). **Handle cases where documents are not found.**
