@@ -1,0 +1,68 @@
+
+sequenceDiagram
+    participant User
+    participant RooCodeUI as RooCode UI/Commands
+    participant Orchestrator as MIDAS Orchestrator
+    participant AgentPool as MIDAS Agent Pool
+    participant CoderAgent as Coder Agent
+    participant JiraAgent as JIRA/Confluence Agent
+    participant RooCodeMCP as RooCode MCP Client
+    participant FilesystemMCP as Filesystem MCP Server
+    participant GitMCP as Git MCP Server
+    participant JiraMCP as JIRA MCP Server
+
+    User->>RooCodeUI: Initiate Task (e.g., "Implement feature X")
+    RooCodeUI->>Orchestrator: Start Workflow(Specification)
+    Orchestrator->>AgentPool: Request Planner/Decomposer Agent
+    Note over Orchestrator, AgentPool: Decomposition into JIRA tasks
+    Orchestrator->>AgentPool: Request JIRA Agent
+    AgentPool-->>JiraAgent: Activate JIRA Agent
+    JiraAgent->>Orchestrator: Request JIRA API Tool Call (Create Issues)
+    Orchestrator->>RooCodeMCP: Forward Tool Call (JIRA Create)
+    RooCodeMCP->>JiraMCP: tools/call (create_issue, params)
+    JiraMCP-->>RooCodeMCP: Tool Result (Success/Failure, Issue IDs)
+    RooCodeMCP-->>Orchestrator: Forward Tool Result
+    Orchestrator-->>JiraAgent: Provide Tool Result
+    JiraAgent-->>Orchestrator: Task Complete/Update
+
+    Orchestrator->>AgentPool: Request Coder Agent for Task ID 123
+    AgentPool-->>CoderAgent: Activate Coder Agent(Task ID 123)
+
+    Note over CoderAgent: Needs to read existing code
+    CoderAgent->>Orchestrator: Request Filesystem Tool Call (Read file 'src/main.js')
+    Orchestrator->>RooCodeMCP: Forward Tool Call (FS Read)
+    RooCodeMCP->>FilesystemMCP: tools/call (read_file, path='src/main.js')
+    FilesystemMCP-->>RooCodeMCP: Tool Result (File Content)
+    RooCodeMCP-->>Orchestrator: Forward Tool Result
+    Orchestrator-->>CoderAgent: Provide Tool Result (File Content)
+
+    Note over CoderAgent: Generates code changes (using LLM via Orchestrator - not shown for brevity)
+
+    Note over CoderAgent: Needs to write changes
+    CoderAgent->>Orchestrator: Request Filesystem Tool Call (Write file 'src/main.js')
+    Orchestrator->>RooCodeMCP: Forward Tool Call (FS Write)
+    RooCodeMCP->>FilesystemMCP: tools/call (write_file, path='src/main.js', content=...)
+    FilesystemMCP-->>RooCodeMCP: Tool Result (Success/Failure)
+    RooCodeMCP-->>Orchestrator: Forward Tool Result
+    Orchestrator-->>CoderAgent: Provide Tool Result
+
+    Note over CoderAgent: Needs to commit changes
+    CoderAgent->>Orchestrator: Request Git Tool Call (Commit)
+    Orchestrator->>RooCodeMCP: Forward Tool Call (Git Commit)
+    RooCodeMCP->>GitMCP: tools/call (commit, message='Implement feature X part 1')
+    GitMCP-->>RooCodeMCP: Tool Result (Success/Failure)
+    RooCodeMCP-->>Orchestrator: Forward Tool Result
+    Orchestrator-->>CoderAgent: Provide Tool Result
+
+    CoderAgent-->>Orchestrator: Task Complete/Update
+    Orchestrator->>AgentPool: Request JIRA Agent
+    AgentPool-->>JiraAgent: Activate JIRA Agent
+    JiraAgent->>Orchestrator: Request JIRA API Tool Call (Update Issue Status)
+    Orchestrator->>RooCodeMCP: Forward Tool Call (JIRA Update)
+    RooCodeMCP->>JiraMCP: tools/call (update_issue, issue_id=123, status='Done')
+    JiraMCP-->>RooCodeMCP: Tool Result (Success/Failure)
+    RooCodeMCP-->>Orchestrator: Forward Tool Result
+    Orchestrator-->>JiraAgent: Provide Tool Result
+
+    Orchestrator-->>RooCodeUI: Report Progress/Completion
+    RooCodeUI-->>User: Display Status/Results
