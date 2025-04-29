@@ -126,14 +126,24 @@ graph TD
     -   Essential: `git`, `curl`, `unzip`
     -   Optional (for faster downloads): `svn`
 -   **External Tooling (Potentially Required):** Depending on agent tasks, ensure tools like `node`, `python`, `docker`, `terraform`, `mmdc` (Mermaid CLI), specific linters, test runners, or security scanners are available in the environment where RooCode executes commands. Check agent definitions (`.roo/agents/*.agent.md`) for hints.
+-   **MCP Servers:** Ensure you have access to external MCP servers for Filesystem, Git,  GitHub and Atlassian MCPs. These can be local or remote servers that provide the necessary APIs for RooCode to interact with.
+    -   **GitHub:** https://github.com/github/github-mcp-server
+    -   **Atlassian:** https://github.com/sooperset/mcp-atlassian
 
 ### One-Liner Install Script
 
 Run this command from the **root directory** of your target project:
 
 ```bash
-sh install.sh
+curl -s https://gist.githubusercontent.com/K1ntus/352160f40caf20f3a83366312d4d4849/raw/119efe1e1e1b7bee2d4dbe74e9f24dda0c4b2ba0/midas-install.sh -o midas-install.sh && sh midas-install.sh
 ```
+
+If you prefer, you can retrieve the midas-install.sh script and run it manually:
+
+```bash
+sh midas-install.sh
+```
+
 
 ### Manual Setup Steps (Required)
 
