@@ -1,4 +1,3 @@
-
 <!--
 MIDAS Bug Report Issue Template
 ==============================
@@ -58,17 +57,3 @@ Instructions for Agent (e.g., MIDAS Tester):
 
 ```text
 [Paste relevant log output here if applicable]
-```
-
-[Link to Screenshot 1]()
-[Link to Screenshot 2]()
-
-## 💡 Additional Notes (Optional)
-
-[Include any other relevant information, observations, or potential hints for debugging.]
-
-## 🤖 MIDAS Metadata
-
-*   **Originating Agent:** `MIDAS Tester`
-*   **Source/Trigger:** [e.g., "Testing failure for Task #123 on branch feature/123"]
-```
