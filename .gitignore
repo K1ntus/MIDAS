@@ -1,3 +1,10 @@
 mcp.json
 .test
 **/*meshsync*
+node_modules
+*.log
+.tmp
+docs/tests
+.aidigestignore
+ai-ingest.sh
+package*.json
