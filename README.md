@@ -1,7 +1,7 @@
 
 # MIDAS 🚀 Memory-Integrated Development and Architecture System
 
-**_An agentic AI framework for structured software development within RooCode, leveraging specialized agents and deep GitHub integration._**
+**_An agentic AI framework for structured software development within RooCode, leveraging specialized agents and deep GitHub & Atlassian integration._**
 
 ---
 
@@ -155,11 +155,8 @@ The script automates file downloads, but you **must** perform these steps manual
     *   Run these servers locally (often via Docker).
     *   **Crucially for GitHub:** Generate a GitHub Personal Access Token (PAT) with sufficient permissions (`repo`, `project`, `read:org`) and configure the GitHub MCP server to use it securely.
 2.  **Configure RooCode:**
-    *   In your RooCode configuration, add connections to the running MCP servers you set up in the previous step. Ensure the host/port details are correct.
-3.  **Install Agent CLI Dependencies:**
-    *   Review the `.roo/agents/*.agent.md` files. If agents use `execute_command` for specific tools (build tools, test runners, IaC tools, diagramming tools like `mmdc`, security scanners), ensure these tools are installed and accessible within the RooCode execution environment.
-4.  **(Optional) RooCode Common Rules Processing:**
-    *   The framework includes `.roo/agents/_common_rules.md`. For this to work effectively, your RooCode environment needs to support prepending this common file's content to individual agent definitions before processing them. Check your RooCode version/features or request this capability if needed.
+    *   In your RooCode configuration, add connections to the running MCP servers you set up in the previous step.
+3.  **Create Dedicated Roo Modes:** You can directly use the different agents roles described within roomodes.json and add it to your global or project configuration.
 
 ## Usage
 
