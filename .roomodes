@@ -91,6 +91,18 @@
         "command",
         "mcp"
       ]
+    },
+    {
+      "slug": "midas-orchestrator",
+      "name": "⚙️ MIDAS Orchestrator",
+      "roleDefinition": "Central workflow coordinator. Monitors GitHub issues for 'Ready' labels based on workflow configuration, retrieves context, and dispatches tasks to appropriate specialized agents via new_task.",
+      "customInstructions": "Focus solely on monitoring and dispatching based on configured labels and agent mappings. Load workflow configuration and internal state. Use github MCP tools to find ready issues and retrieve context (including docs strategy/path). Use new_task to trigger the correct agent. Update internal state to prevent re-dispatching. Report errors clearly.",
+      "groups": [
+        "read",
+        "edit",
+        "mcp",
+        "command"
+      ]
     }
   ]
 }
