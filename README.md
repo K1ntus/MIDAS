@@ -56,12 +56,13 @@ MIDAS leverages deep integration with **GitHub Issues** and **GitHub Projects v2
 MIDAS operates as a system of agents and rules within the RooCode environment. It does *not* require a separate external monitoring service; orchestration is managed internally.
 
 ```mermaid
+
 graph TD
     subgraph RooCode Environment
         User --> RooCodeInterface[RooCode UI/Commands]
         RooCodeInterface --> MIDASCore[MIDAS Agents via new_task]
 
-        subgraph MIDAS Core Logic (Agents & Rules)
+        subgraph "MIDAS Core Logic (Agents & Rules)"
             direction LR
             OrchestratorAgent[MIDAS Orchestrator Agent] -.-> AgentPool
             OrchestratorAgent -- Polls --> RooCodeMCP[RooCode MCP Client]
@@ -102,12 +103,12 @@ graph TD
         MIDASCore --> RooCodeTerminal
         MIDASCore --> RooCodeMCP
 
-        RooCodeMCP --> MCPServers[External MCP Servers (Filesystem, Git, github)]
+        RooCodeMCP --> MCPServers["External MCP Servers (Filesystem, Git, github)"]
     end
 
     ModelInteraction --> ExternalLLMs[LLMs]
 
-    style MIDAS Core Logic fill:#fdf,stroke:#f8f,stroke-width:1px
+    %% style MIDAS Core Logic (Agents & Rules) fill:#fdf,stroke:#f8f,stroke-width:1px
     style RooCodeEnvironment fill:#ccf,stroke:#66f,stroke-width:2px
 ```
 
